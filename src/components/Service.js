@@ -1,26 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Base from './Base';
-import { Box, Card, Button, TextField, ToggleButton, ToggleButtonGroup, createTheme, CardActionArea, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Fab, Grid, Paper, Typography } from '@mui/material';
+import { Box, Card, Button, TextField, ToggleButton, ToggleButtonGroup, CardActionArea, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Fab, Grid, Paper, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { URL, token } from '../App';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 
-const { palette } = createTheme();
-const { augmentColor } = palette;
-  const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
-const defaultTheme = createTheme({
-  palette: {
-    tang: createColor('#00695f'),
-    orange: createColor('#ff9100'),
-    blue: createColor('#651fff')
-  }
-
-});
 const Service = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [services, setServices] = useState([]);
 
   // Get service

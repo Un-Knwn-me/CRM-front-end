@@ -3,7 +3,6 @@ import Base from './Base'
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
 import {URL, token} from '../App';
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
 const columns = [
@@ -22,15 +21,13 @@ const columns = [
 ];
 
 const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, monthName, year, greeting, userName }) => {
-  const [leads, setLeads] = useState([]);
-  const [leadcount, setLeadCount] = useState([]);
-  const currentDate = new Date();
+  // const [leads, setLeads] = useState([]);
+  // const [leadcount, setLeadCount] = useState([]);
+  
   const [rows, setRows] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const navigate = useNavigate();
-
-
 
     // Fetching Leads
     const getLeads = async () => {
@@ -63,12 +60,10 @@ const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, mo
         console.error(error);
       }
     };
-
     
   useEffect(() => {
     getLeads();
-  }, []);
-
+  });
 
   // table
 

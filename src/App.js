@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Signin from './components/Signin';
 import Dashboard from './components/Dashboard';
 import Contact from './components/Contact';
@@ -18,16 +18,14 @@ import { toast } from "react-toastify";
 import UserEdit from './components/UserEdit';
 
 
-export const URL = "https://crm-backend-5con.onrender.com/"
+export const URL = "https://crm-backend-5con.onrender.com"
 export const token = sessionStorage.getItem('token');
 
 function App() {
-  const navigate = useNavigate();
   const [greeting, setGreeting] = useState('');
   const [userName, setUserName] = useState('');
   const [contacts, setContacts] = useState([]);
   const [users, setUsers] = useState([]);
-  const [services, setServices] = useState([]);
   const [overall,setOverall]=useState(0);
   const [ overpending, setOverpending] = useState(0);
   const currentDate = new Date();
@@ -45,7 +43,6 @@ function App() {
     getoveralldata();
     getMonthlyData();
     getyeardata();
-    getServices();
     getUser();
     getCurrentGreeting();
   }, [])
@@ -106,19 +103,6 @@ function App() {
     }
   };
 
-    // Get service
-    const getServices = async () => {
-      try {
-        const res = await axios.get(`${URL}/services/list`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setServices(res.data.services);
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
      // Fetching data of overall sales
      const getoveralldata = async () =>{
@@ -167,7 +151,7 @@ const getyeardata = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const { sales, totalAmount, count } = response.data;
+    const { totalAmount, count } = response.data;
     setTotalAmountYear(totalAmount);
     setTotalNoYear(count); 
   } catch (error) {

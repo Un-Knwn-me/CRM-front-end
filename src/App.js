@@ -22,7 +22,7 @@ import MailService from './components/MailService';
 import Nopage from './components/Nopage';
 
 
-export const URL = "http://localhost:12000"
+export const URL = "https://crm-backend-5con.onrender.com"
 export const token = sessionStorage.getItem('token');
 
 function App() {

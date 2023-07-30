@@ -21,8 +21,6 @@ const columns = [
 ];
 
 const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, monthName, year, greeting, userName }) => {
-  // const [leads, setLeads] = useState([]);
-  // const [leadcount, setLeadCount] = useState([]);
   
   const [rows, setRows] = useState([]);
   const [page, setPage] = useState(0);
@@ -32,7 +30,7 @@ const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, mo
     // Fetching Leads
     const getLeads = async () => {
       try {
-        const res = await axios.get(`${URL}/leads/status/Created`, {
+        const res = await axios.get(`${URL}/leads/status/New`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -47,11 +45,13 @@ const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, mo
             leadData.mobile,
             leadData.industry,
             leadData.city,
+            leadData.state,
             leadData.status,
             leadData.createdAt,
             leadData.createdBy,
             leadData.updatedAt,
-            leadData.updatedBy
+            leadData.updatedBy,
+            leadData._id,
           )
         );
         setRows(transformedRows);
@@ -75,11 +75,13 @@ const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, mo
     email,
     industry,
     city,
+    state,
     status,
     createdAt,
     createdBy,
     updatedAt,
-    updatedBy
+    updatedBy,
+    _id
   ) => {
     const formatDateAndTime = (timeString) => {
       if (!timeString) {
@@ -107,11 +109,13 @@ const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, mo
       email,
       industry,
       city,
+      state,
       status,
       createdAt: formatDateAndTime(createdAt),
       createdBy,
       updatedAt: formatDateAndTime(updatedAt),
       updatedBy,
+      _id
     };
   };
 
@@ -214,13 +218,14 @@ const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, mo
                
       <Grid item xs={12} md={12} lg={12}>
         <Typography variant="h5" gutterBottom>
-        Present undertakings:- (Created Lead)
+        Present undertakings:- (New Leads)
         </Typography>
         <Paper
           sx={{
             p: 2,
             display: "flex",
             flexDirection: "column",
+            bgcolor: "#E6F0EF",
           }}
         >
           <Paper sx={{ width: "100%", overflow: "hidden" }}>
@@ -230,7 +235,7 @@ const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, mo
                   <TableRow>
                     {columns.map((column) => (
                       <TableCell
-                        key={column.id}
+                        key={column._id}
                         align={column.align}
                         style={{ minWidth: column.minWidth }}
                       >
@@ -244,11 +249,11 @@ const Dashboard = ({ overall, overpending, totalAmountYear, totalAmountMonth, mo
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => (
                       <TableRow
-                        key={row._id}
+                        key={row.id}
                         hover
                         role="checkbox"
                         tabIndex={-1}
-                        onClick={()=> navigate(`/edit/lead/${row._id}`)}
+                        onClick={()=> navigate(`/edit/lead/${row._id}`)} 
                       >
                         {columns.map((column) => {
                           const value = row[column.id];

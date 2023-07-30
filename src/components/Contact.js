@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { forwardRef, useState } from "react";
 import Base from "./Base";
 import { AppBar, Box, Button, Card, CardActionArea, CardContent, CardMedia, Dialog, Fab, Grid, IconButton, Paper, Slide,
   TextField, ToggleButton, ToggleButtonGroup, Toolbar, Typography } from "@mui/material";
@@ -29,7 +29,7 @@ const Contact = ({contacts, setContacts}) => {
       <div>
         <Grid container spacing={3}>
           <Grid item xs={12} md={10} lg={12}>
-            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+            <Paper sx={{ p: 2, display: "flex", flexDirection: "column", bgcolor: "#E6F0EF", }}>
               <div>
                 <Grid container spacing={3}>
                   {contacts.map((contact) => (
@@ -97,7 +97,7 @@ export default Contact;
 
 // Add contact
 
-function AddContact({ contacts, setContacts }) {
+function AddContact() {
   const [open, setOpen] = useState(false);
   const [type, setType] = useState("Individual");
   const [fullName, setFullName] = useState("");
@@ -376,7 +376,7 @@ function AddContact({ contacts, setContacts }) {
                     />
                   </Grid>
                   <Grid item xs={6} md={6} lg={6}>
-                    <h5></h5>
+                    <h5> </h5>
                     <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                       <WorkIcon
                         sx={{ color: "action.active", mr: 1, my: 0.5 }}

@@ -16,9 +16,13 @@ import jwtDecode from 'jwt-decode';
 import axios from "axios";
 import { toast } from "react-toastify";
 import UserEdit from './components/UserEdit';
+import SaleEdit from './components/SaleEdit';
+import ResetPassword from './components/ResetPassword';
+import MailService from './components/MailService';
+import Nopage from './components/Nopage';
 
 
-export const URL = "https://crm-backend-5con.onrender.com"
+export const URL = "http://localhost:12000"
 export const token = sessionStorage.getItem('token');
 
 function App() {
@@ -187,6 +191,8 @@ const getyeardata = async () => {
       totalNoMonth={totalNoMonth} contacts={contacts}
       />}/>
 
+      <Route path='/edit/sale/:id' element={<SaleEdit />} />
+
       <Route path='/service' element={<Service />}/>
 
       <Route path='/edit/service/:id' element={<ServiceEdit />}/>
@@ -198,6 +204,12 @@ const getyeardata = async () => {
       <Route path='/user-management' element={<User users={users} setUsers={setUsers}/>}/>
 
       <Route path='/edit/user/:id' element={<UserEdit users={users} setUsers={setUsers}/>}/>
+
+      <Route path="/confirm-mail" element={<MailService />} />
+
+      <Route path="/reset-password/:id/:token" element={<ResetPassword/>} />
+
+      <Route path="**" element={<Nopage />} />
 
     </Routes>
   );

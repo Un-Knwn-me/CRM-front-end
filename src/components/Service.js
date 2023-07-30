@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { URL, token } from '../App';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 // import { toast } from 'react-toastify';
 
 
@@ -45,8 +46,9 @@ const Service = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >
                   <h3>Created</h3>
                   <ServiceStatus services={services.filter((service) => service.status === 'Created')}/>
@@ -59,8 +61,9 @@ const Service = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >
                   <h3>Open</h3>
                   <ServiceStatus title="Open" services={services.filter((service) => service.status === 'Open')}/>
@@ -73,8 +76,9 @@ const Service = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >
                   <h3>In Process</h3>
                 <ServiceStatus services={services.filter((service) => service.status === 'In process')}/>
@@ -87,8 +91,9 @@ const Service = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >
                   <h3>Released</h3>
                   <ServiceStatus title="Released" services={services.filter((service) => service.status === 'Released')}/>
@@ -101,8 +106,9 @@ const Service = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >
       
                <h3>Canceled</h3>
@@ -116,8 +122,9 @@ const Service = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >
                  
                   <h3>Completed</h3>
@@ -209,11 +216,10 @@ function AddService({ getServices }) {
       if (response.status === 200) {
         getServices();
         setOpen(false);
-      } else {
-        console.log('Error:', response.status, response.statusText);
-      }
+        toast.success(response.data.message);
+      } 
     } catch (error) {
-      console.log('Error:', error);
+      toast.error(error.response.data.message);
     }
   };
 

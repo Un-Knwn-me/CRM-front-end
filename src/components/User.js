@@ -29,7 +29,7 @@ const User = ({users, setUsers}) => {
       <div>
         <Grid container spacing={3}>
           <Grid item xs={12} md={10} lg={12}>
-            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+            <Paper sx={{ p: 2, display: "flex", flexDirection: "column", bgcolor: "#E6F0EF", }}>
               <div>
                 <Grid container spacing={3}>
                   {users.map((user) => (

@@ -21,18 +21,15 @@ import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Avatar, Button, Fab, Menu, MenuItem, Tooltip } from '@mui/material';
+import { Avatar, Fab, Menu, MenuItem, Tooltip } from '@mui/material';
 import { toast } from 'react-toastify';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useEffect } from 'react';
-import { token } from '../App';
-import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 function Copyright(props) {
@@ -112,7 +109,6 @@ export default function Base({title, description, children}) {
   const navigate = useNavigate();
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [userName, setUserName] = useState('');
-  const [userImg, setUserImg] = useState('');
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -141,11 +137,9 @@ export default function Base({title, description, children}) {
         const token = sessionStorage.getItem('token');
         if (token) {
           const decodedToken = jwtDecode(token);
-          const { firstName, lastName, image } = decodedToken;
+          const { firstName, lastName } = decodedToken;
           const fullName = `${firstName} ${lastName}`;
-          const userImg = image;
           setUserName(fullName);
-          setUserImg(userImg);
         }
       };
 
@@ -185,7 +179,7 @@ export default function Base({title, description, children}) {
               {title}
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color='orange'>
+              <Badge badgeContent={0} color='orange'> 
                 <NotificationsIcon />
               </Badge>
             </IconButton>

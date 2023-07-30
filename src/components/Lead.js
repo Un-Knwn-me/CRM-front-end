@@ -1,25 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Base from './Base';
-import { Box, Card, Button, TextField, ToggleButton, ToggleButtonGroup, createTheme, CardActionArea, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Fab, Grid, Paper, Typography } from '@mui/material';
+import { Box, Card, Button, TextField, ToggleButton, ToggleButtonGroup, CardActionArea, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Fab, Grid, Paper, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { URL, token } from '../App';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const { palette } = createTheme();
-const { augmentColor } = palette;
-  const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
-const defaultTheme = createTheme({
-  palette: {
-    tang: createColor('#00695f'),
-    orange: createColor('#ff9100'),
-    blue: createColor('#651fff')
-  }
-});
 
 const Lead = () => {
-  const navigate = useNavigate();
   const [leads, setLeads] = useState([]);
 
   // Get leads
@@ -55,7 +44,7 @@ const Lead = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
                   style={{maxHeight: 400, overflow: 'auto'}}
                 >
@@ -70,8 +59,9 @@ const Lead = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >
 
                 <h3>Contacted</h3>
@@ -85,8 +75,9 @@ const Lead = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >                  
 
               <h3>Qualified</h3>
@@ -100,8 +91,9 @@ const Lead = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >
 
                   <h3>Lost</h3>
@@ -115,8 +107,9 @@ const Lead = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >                  
 
                   <h3>Canceled</h3>
@@ -129,9 +122,10 @@ const Lead = () => {
                   sx={{
                     p: 2,
                     display: 'flex',
-                    bgcolor: "#e0f2f1",
+                    bgcolor: "#E6F0EF",
                     flexDirection: 'column'
                   }}
+                  style={{maxHeight: 400, overflow: 'auto'}}
                 >                  
                                   
                   <h3>Confirmed</h3>
@@ -222,11 +216,12 @@ function AddLead({ getLeads }) {
       if (response.status === 200) {
         getLeads();
         setOpen(false);
+        toast.success(response.data.message);
       } else {
         console.log('Error:', response.status, response.statusText);
       }
     } catch (error) {
-      console.log('Error:', error);
+      toast.error(error.response.data.message);
     }
   };
 

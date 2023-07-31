@@ -31,23 +31,22 @@ const { augmentColor } = palette;
 
 const Signup = () => {
     const navigate =useNavigate();
-    const [alignment, setAlignment] = useState('admin');
+    const [role, setRole] = useState('Admin');
 
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
+  const handleChange = (event, newRole) => {
+    setRole(newRole);
   };
     
     const handleSubmit = async(event) => {
       try {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        
+
         let firstName = data.get('firstName');
         let lastName = data.get('lastName');
         let email = data.get('email');
         let password = data.get('password');
-        let role = data.get(alignment);
-           
+        
       let res = await axios.post(`${URL}/users/signup`, {
         firstName,
         lastName,
@@ -55,9 +54,6 @@ const Signup = () => {
         password,
         role
         })
-        console.log(
-          res
-          );
           toast.success(res.data.message);
           navigate('/')
       
@@ -101,7 +97,9 @@ const Signup = () => {
             <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" encType="multipart/form-data" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <Grid container spacing={2}>
+                <Grid item>
               <TextField
                 margin="normal"
                 required
@@ -111,8 +109,8 @@ const Signup = () => {
                 name="firstName"
                 autoComplete="firstName"
                 autoFocus
-                sx={{m : 2}}
-              />
+              /></Grid>
+              <Grid item>
               <TextField
                 margin="normal"
                 required
@@ -122,8 +120,8 @@ const Signup = () => {
                 name="lastName"
                 autoComplete="lastName"
                 autoFocus
-                sx={{m : 2}}
-              />
+              /></Grid>
+              </Grid>
                <TextField
                 margin="normal"
                 required
@@ -149,16 +147,16 @@ const Signup = () => {
               Role:
                <ToggleButtonGroup
       color='tang'
-      value={alignment}
+      value={role}
       exclusive
       onChange={handleChange}
       aria-label="Platform"
       sx={{m : 2}}
     >
-      <ToggleButton value="admin">Admin</ToggleButton>
-      <ToggleButton value="manager">Manager</ToggleButton>
-      <ToggleButton value="employee">Employee</ToggleButton>
-      <ToggleButton value="user">User</ToggleButton>
+      <ToggleButton value="Admin">Admin</ToggleButton>
+      <ToggleButton value="Manager">Manager</ToggleButton>
+      <ToggleButton value="Employee">Employee</ToggleButton>
+      <ToggleButton value="User">User</ToggleButton>
     </ToggleButtonGroup>
               <FormControlLabel
                 control={<Checkbox value="terms" color="primary" required />}

@@ -144,12 +144,12 @@ const Signin = () => {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" color={"#00695f"} variant="body2">
+                  <Link color={"#00695f"} onClick={()=>navigate('/confirm-mail')} variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" color={"#00695f"} variant="body2">
+                  <Link color={"#00695f"} onClick={()=>navigate('/register')} variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

@@ -7,21 +7,14 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="#">
-          AUTH-App
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
-  
-  
-  const defaultTheme = createTheme();
+const { palette } = createTheme();
+const { augmentColor } = palette;
+const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
+const defaultTheme = createTheme({
+  palette: {
+      tang: createColor('#00695f')
+    }
+});
 
 const MailService = () => {
 
@@ -52,7 +45,6 @@ const MailService = () => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -64,7 +56,7 @@ const MailService = () => {
           <Typography component="h1" variant="h5">
             Confirm Profile
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
             <Grid container spacing={2}>
             
               <Grid item xs={12}>
@@ -81,6 +73,7 @@ const MailService = () => {
             <Button
               type="submit"
               fullWidth
+              color='tang'
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
@@ -88,7 +81,7 @@ const MailService = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link onClick={()=> navigate("/")}
+                <Link onClick={()=> navigate("/")} color={"#00695f"}
                 style={{cursor:"pointer"}} variant="body2">
                   Remembered Password? Sign in
                 </Link>
@@ -96,7 +89,6 @@ const MailService = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
     <br/><br/>

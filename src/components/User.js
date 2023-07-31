@@ -181,8 +181,7 @@ function AddUser({ users, setUsers }) {
         formData.append("image", image);
       }
 
-      console.log(formData)
-      const response = await axios.post(`${URL}/users/signup`, formData, {
+      const response = await axios.post(`${URL}/users/add`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

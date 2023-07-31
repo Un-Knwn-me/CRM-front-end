@@ -7,20 +7,14 @@ import axios from 'axios';
 import { URL } from '../App';
 import { useNavigate, useParams } from 'react-router-dom';
 
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="#">
-          AUTH-App
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
-
-  const defaultTheme = createTheme();
+const { palette } = createTheme();
+const { augmentColor } = palette;
+const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
+const defaultTheme = createTheme({
+  palette: {
+      tang: createColor('#00695f')
+    }
+});
 
 const ResetPassword = () => {
     const {token} = useParams();
@@ -52,7 +46,6 @@ const ResetPassword = () => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -88,6 +81,7 @@ const ResetPassword = () => {
             <Button
               type="submit"
               fullWidth
+              color='tang'
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
@@ -95,14 +89,13 @@ const ResetPassword = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link onClick={()=>navigate("/")} variant="body2">
+                <Link onClick={()=>navigate("/")}  color={"#00695f"} variant="body2">
                   Remembered Password? Sign in
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
 

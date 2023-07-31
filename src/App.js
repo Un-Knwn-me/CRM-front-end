@@ -207,7 +207,7 @@ const getyeardata = async () => {
 
       <Route path="/confirm-mail" element={<MailService />} />
 
-      <Route path="/reset-password/:id/:token" element={<ResetPassword/>} />
+      <Route path="/reset-password/:token" element={<ResetPassword/>} />
 
       <Route path="**" element={<Nopage />} />
 
